@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background-color: white;
+    position: relative;
+    height: 115vh;
+    overflow-x: hidden;
+}
+h1{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-align: center;
+}
+#d{
+    position: relative;
+    background-color: #FFFFFF;
+    width: 400px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    top: 4vh;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: flex-start;
+    padding: 10px 10px 20px 10px;
+    align-items: center;
+}
+.inp{
+    height: 50px;
+    margin: 6px 0;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+.inp:focus{
+    outline: none;
+    border: 1px solid rgb(252, 183, 64);
+    box-shadow: 0 0 5px rgb(254, 182, 57);
+    caret-color: rgb(251, 182, 63);
+}
+#b7{
+    background: #42b72a;
+    color: #FFFFFF;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    height: 60px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-right: 10px;
+    width: 40%;
+    margin-left: 15px;
+}
+#b7:hover{
+    background-color: rgba(28, 146, 5, 0.703);
+    cursor: pointer;
+}
+#b8{
+    background-color: rgb(254, 182, 57);
+    color: #FFFFFF;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    height: 60px;
+    font-weight: bold;
+    width: 40%; 
+    margin-left: 10px;
+    margin-top: 20px;
+}
+#b8:hover{
+    cursor: pointer;
+    background-color: rgb(247, 177, 15);
+}
+#b9{
+    background: #42b72a;
+    color: #FFFFFF;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    height: 60px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 95%;
+}
+#b9:hover{
+    background-color: rgba(28, 146, 5, 0.703);
+    cursor: pointer;
+}
+#b10{
+    background: #42b72a;
+    color: #FFFFFF;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    height: 50px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 95%;
+}
+#b10:hover{
+    background-color: rgba(28, 146, 5, 0.703);
+    cursor: pointer;
+}
+#b13{
+    background-color: rgb(254, 182, 57);
+    color: #FFFFFF;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    height: 50px;
+    font-weight: bold;
+    width: 50%; 
+    margin-left: 95px;
+    margin-top: 20px;
+}
+#b13:hover{
+    cursor: pointer;
+    background-color: rgb(247, 177, 15);
+}

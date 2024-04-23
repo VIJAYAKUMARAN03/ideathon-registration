@@ -1,0 +1,31 @@
+#contain{
+    font-family: 'Times New Roman', Times, serif;
+    position: relative;
+    background-color: #FFFFFF;
+    width: 400px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    top: 6vh;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: flex-start;
+    padding: 10px 10px 20px 10px;
+    align-items: center;
+}
+#d11{
+    padding: 5px;
+}
+#c1{
+    text-align: center;
+}
+#dc1{
+    margin-bottom: 10px;
+    height: 50%;
+    width: 100%;
+}
+#dc2{
+    height: 50%;
+    width: 100%;
+}

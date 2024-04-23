@@ -1,0 +1,69 @@
+.bgimg{
+    background-image: url('b.jpg');
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 125vh;
+}
+#hd{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 25px;
+    max-width: 100%;
+    max-height: 100%;
+}
+#lb{
+    margin-left: 10px;
+    border: solid rgba(50, 220, 16, 0.703);
+    background-color: transparent;
+    color: rgba(50, 220, 16, 0.703);
+}
+#sb{
+    margin-right: 10px;
+    border: solid rgb(255, 191, 41);
+    background-color: transparent;
+    color: rgb(255, 191, 41);
+}
+#lb:hover{
+    background-color: rgba(28, 146, 5, 0.703);
+    color: white;
+    cursor: pointer;
+}
+#sb:hover{
+    cursor: pointer;
+    background-color: rgb(247, 177, 15);
+    color: white;
+}
+#cdh{
+    position: relative;
+    background-color: #FFFFFF;
+    opacity: 0.8;
+    width: auto;
+    border-radius: 10px;
+    top: 6vh;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 5px;
+    width: 70%;
+    padding: 10px 10px 20px 10px;
+    align-items: center;
+}
+#cdh>h1{
+    font-size: 50px;
+    font-weight: bold;
+}
+#cdh>p{
+    text-align: justify;
+    font-size: 20px;
+}
+@media only screen and (max-width: 600px) {
+    #cdh{
+        width: 90%;
+    }
+}

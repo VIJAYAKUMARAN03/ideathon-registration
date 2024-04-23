@@ -1,0 +1,90 @@
+STUDENT :
+
+1. SIGN UP:
+
+http://localhost:5432/ideathon/Student/signup
+
+json :
+{
+"email" : "vijaykumar@gmail.com",
+"name" : "VIJAYAKUMAR",
+"rno" : "21ADR062",
+"dpt" : "AI&DS",
+"year" : 2,
+"programme" : "BTECH",
+"section" : "A",
+"password" : "newpass123"
+}
+
+
+2.SIGN IN :
+http://localhost:5432/ideathon/Student/signin/vijaykumar@gmail.com/newpass123
+
+3. UPDATE :
+
+http://localhost:5432/ideathon/Student/update/vijay@gmail.com
+
+json :
+{
+"email" : "vijay@gmail.com",
+"name" : "VIJAYAKUMARAN",
+"rno" : "21ADR061",
+"dpt" : "AI&DS",
+"year" : 2,
+"programme" : "BTECH",
+"section" : "A",
+"password" : "newpass123"
+}
+
+4. DELETE
+
+http://localhost:5432/ideathon/Student/delete/vijay@gmail.com
+
+
+
+
+
+
+ADMIN :
+
+1. SIGN UP :
+
+http://localhost:5432/ideathon/Admin/signup
+
+json:
+{
+    "email": "ram@gmail.com",
+    "password": "$2b$10$8bOajdjX8gWTurKlWsYELe8WWtURCTFvDX427CRMQKccHto/i.UIW",
+    "name": "RAM",
+    "programme": "BTECH",
+    "dpt": "AI",
+    "_id": "646646f10aaf0d05c3492af1",
+    "__v": 0
+}
+
+2. SIGN IN :
+
+http://localhost:5432/ideathon/Admin/signin/ram@gmail.com/pass123
+
+3. UPDATE :
+
+http://localhost:5432/ideathon/Admin/update/ram@gmail.com
+
+JSON :
+
+{
+    "_id": "646646f10aaf0d05c3492af1",
+    "email": "ram@gmail.com",
+    "password": "$2b$10$8bOajdjX8gWTurKlWsYELe8WWtURCTFvDX427CRMQKccHto/i.UIW",
+    "name": "RAM S",
+    "programme": "BTECH",
+    "dpt": "AI",
+    "__v": 0
+}
+
+4. DELETE :
+
+http://localhost:5432/ideathon/Admin/delete/ram@gmail.com
+
+
+
