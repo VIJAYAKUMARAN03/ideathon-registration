@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: ideathon-web
+  labels:
+    app: ideathon-app
+spec:
+  selector:
+    matchLabels:
+      app: ideathon-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ideathon-app
+    spec:
+      containers:
+        - name: ideathon-web
+          image: ideathon-web:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ideathon-web-service
+spec:
+  selector:
+    app: ideathon-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

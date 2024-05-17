@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ideathon-deployment
+  labels:
+    app: ideathon-app
+spec:
+  selector:
+    matchLabels:
+      app: ideathon-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ideathon-app
+    spec:
+      containers:
+        - name: backend
+          image: ideathon-backend
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 5432
+          env:
+            - name: MONGO_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-config
+                  key: user
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: pass
+            - name: DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-config
+                  key: db_url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ideathon-service
+spec:
+  selector:
+    app: ideathon-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 5432

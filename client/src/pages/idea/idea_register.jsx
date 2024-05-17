@@ -5,6 +5,16 @@ import './idea.css';
 import { useNavigate } from "react-router-dom";
 import Head from "../../components/header/header_sign";
 import { useState ,useEffect,useRef} from "react";
+
+const dotenv = require('dotenv')
+
+dotenv.config(
+    {
+        path : '../../.env'
+    }
+)
+
+
 function IdeaRegister(){
 
     const [team,setTeam] = useState('');
@@ -36,7 +46,7 @@ function IdeaRegister(){
     {
         if(rno)
         {
-        fetch(`http://localhost:5432/ideathon/Student/${rno}`)
+        fetch(`${process.env.url}ideathon/Student/${rno}`)
         .then(res => res.text())
         .then(res => {
             if(ind===0)
@@ -49,7 +59,6 @@ function IdeaRegister(){
             setStud4(res)
             else if(ind===4)
             setStud5(res)
-
         })
         }
         else
@@ -88,7 +97,7 @@ function IdeaRegister(){
                     mentorid : mentor,
                     students: mem
                     };
-            fetch(`http://localhost:5432/ideathon/Idea/registeridea`,
+            fetch(`/ideathon/Idea/registeridea`,
             {
                 method :"POST",
                 headers : {

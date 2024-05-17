@@ -4,6 +4,16 @@ import { Button,Form} from "react-bootstrap";
 import { Link,useNavigate } from "react-router-dom";
 import './signin.css';
 import Head from "../../components/header/header_sign";
+
+const dotenv = require('dotenv')
+
+dotenv.config(
+    {
+        path : '../../.env'
+    }
+)
+
+
 function LoginTeacher(){
     const [user,setUser] = React.useState("");
     const [pass,setPass] = React.useState("");
@@ -15,7 +25,7 @@ function LoginTeacher(){
         e.preventDefault();
         if(user && pass)
         {
-        fetch(`http://localhost:5432/ideathon/Admin/signin/${user}/${pass}`)
+        fetch(`${process.env.url}ideathon/Admin/signin/${user}/${pass}`)
         .then(res => { return res.json() })
         .then(res => {
             if(res.msg)

@@ -28,7 +28,10 @@ const port = process.env.port;
 
 app.listen(port,()=>{console.log("Listening at the port "+port)})
 
-mongoose.connect(process.env.db)
+const db = 'mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@' + process.env.DB_URL +'/'
+console.log(db)
+
+mongoose.connect(db)
 .then(()=>{console.log("db connected")})
 .catch((err)=>{console.log(err)})
 

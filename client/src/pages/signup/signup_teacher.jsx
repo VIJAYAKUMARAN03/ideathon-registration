@@ -4,6 +4,14 @@ import { Button,Form} from "react-bootstrap";
 import './signup.css';
 import { Link,useNavigate } from "react-router-dom";
 import Head from "../../components/header/header_sign";
+const dotenv = require('dotenv')
+
+dotenv.config(
+    {
+        path : '../../.env'
+    }
+)
+
 function SignupTeacher(){
 
     const [name,setName] = React.useState('');
@@ -30,7 +38,7 @@ function SignupTeacher(){
                     password : pass
                     }
                     
-            fetch(`http://localhost:5432/ideathon/Admin/signup`,
+            fetch(`${process.env.url}ideathon/Admin/signup`,
             {
                 method : "POST",
                 headers : {

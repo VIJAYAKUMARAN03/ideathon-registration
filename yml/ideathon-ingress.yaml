@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ideathon-ingress
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ideathon-web-service
+            port:
+              number: 80
+      - path: /ideathon
+        pathType: Prefix
+        backend:
+          service:
+            name: ideathon-service
+            port:
+              number: 5432

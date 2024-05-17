@@ -1,72 +1,72 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.css';
+import NavBar from "../../components/navbar/nav_student";
 import { Button,Form} from "react-bootstrap";
-import './signup.css';
-import { Link, useNavigate } from "react-router-dom";
-import Head from "../../components/header/header_sign";
-function SignupStudent(){
+import { useLocation,useNavigate } from "react-router-dom";
+import './profile.css';
 
-    const [name,setName] = React.useState('');
-    const [rno,setRno] = React.useState('');
-    const [email,setEmail] = React.useState('');
-    const [prog,setProg] = React.useState('');
-    const [dpt,setDpt] = React.useState('');
-    const [sec,setSec] = React.useState('');
-    const [year,setYear] = React.useState('');
-    const [pass,setPass] = React.useState('');
-    const [cpass,setCpass] = React.useState('');
-    const  [msg,setMsg] = React.useState('');
+const dotenv = require('dotenv')
+
+dotenv.config(
+    {
+        path : '../../.env'
+    }
+)
+
+
+function UpdateProfileStudent(){
 
     const navigate = useNavigate();
+    const location =useLocation();
+    const state = location.state;
+    console.log(state);
+    const [name,setName] = React.useState(state.name);
+    const [rno,setRno] = React.useState(state.rno);
+    const [email,setEmail] = React.useState(state.email);
+    const [prog,setProg] = React.useState(state.programme);
+    const [dpt,setDpt] = React.useState(state.dpt);
+    const [sec,setSec] = React.useState(state.section);
+    const [year,setYear] = React.useState(state.year);
 
-    function handlesubmit(e)
+    console.log(prog +"  " + dpt)    
+    function updatestd(e)
     {
         e.preventDefault();
-        if(name && rno && email && prog && dpt && sec && year && pass && cpass)
-        {
-            //console.log(name + " " +  rno  + " " +  email  + " " +  prog  + " " +  dpt  + " " +  sec  + " " +  year  + " " +  pass  + " " +  cpass);
-            const data = {
-                    email : email,
-                    name : name,
-                    rno : rno,
-                    dpt : dpt,
-                    year : year,
-                    programme : prog,
-                    section : sec,
-                    password : pass
-                    }
-                    
-            fetch(`http://localhost:5432/ideathon/Student/signup`,
-            {
-                method : "POST",
-                headers : {
-                    'content-type' : 'application/json; charset=UTF-8'
-                },
-                body : JSON.stringify(data)
-            }).then(res => res.json())
-            .then(res => {
-                if(res.msg)
-                {
-                    setMsg(res.msg);
-                }
-                else
-                {
-                    console.log(res.body)
-                    setMsg("");
-                    navigate('/login_student');
-                }
-            })
+        const newstate = {
+            name : name,
+            rno : rno,
+            dpt : dpt,
+            programme : prog,
+            email : email,
+            section : sec,
+            year : year
         }
-    }
+        fetch(`${process.env.url}ideathon/Student/update/${email}`,
+        {
+            method : "PUT",
+            headers : {
+                'content-type' : 'application/json; charset=UTF-8'
+            },
+            body : JSON.stringify(newstate)
+        }).then(res => res.json())
+        .then(res => {
+            if(res.msg)
+            {
+                console.log(res);
+            }
+            else
+            {
+                console.log(res.body)
+                navigate('/profile_student',{state:newstate})
+            }
+        })
+        }
 
-
-    return (
+    return(
         <>
-            <Head />
+            <NavBar/>
             <div id="d">
-                <h1>Student Registration</h1>
-                <Form onSubmit={handlesubmit}>
-                    <Form.Group className="mb-3">
+                <h1>Student Profile Update</h1>
+                <Form>                    <Form.Group className="mb-3">
                         <Form.Label>Name</Form.Label>
                         <Form.Control className="inp" type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}/>
                     </Form.Group>
@@ -76,11 +76,11 @@ function SignupStudent(){
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control className="inp" type="email" placeholder="name@kongu.edu" value={email}  onChange={(e) => setEmail(e.target.value)}/>
+                        <Form.Control className="inp" type="email" placeholder="name@kongu.edu" value={email} onChange={(e) => setEmail(e.target.value)}/>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Choose your Programme</Form.Label>
-                        <Form.Select className="inp" onChange={(e) => setProg(e.target.value)}>
+                        <Form.Select className="inp" value={prog} onChange={(e) => setProg(e.target.value)}>
                             <option>Programme</option>
                             <option value="B.E">B. E</option>
                             <option value="B. Tech">B. Tech</option>
@@ -90,7 +90,7 @@ function SignupStudent(){
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Choose your Department</Form.Label>
-                        <Form.Select className="inp" onChange={(e) => setDpt(e.target.value) }>
+                        <Form.Select className="inp" value={dpt} onChange={(e) => setDpt(e.target.value)}>
                             <option>Department</option>
                             <option value="Artificial Intelligence and Data Science">Artificial Intelligence and Data Science</option>
                             <option value="Artificial Intelligence and Machine Learning">Artificial Intelligence and Machine Learning</option>
@@ -110,7 +110,7 @@ function SignupStudent(){
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Choose your Section</Form.Label>
-                        <Form.Select className="inp" onChange={(e) => setSec(e.target.value)}>
+                        <Form.Select className="inp" value={sec} onChange={(e) => setSec(e.target.value)}>
                             <option>Section</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
@@ -121,7 +121,7 @@ function SignupStudent(){
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Choose your Year</Form.Label>
-                        <Form.Select className="inp" onChange={(e) => setYear(e.target.value)}>
+                        <Form.Select className="inp" value={year} onChange={(e) => setYear(e.target.value)}>
                             <option>Year</option>
                             <option value={1}>I</option>
                             <option value={2}>II</option>
@@ -130,34 +130,15 @@ function SignupStudent(){
                             <option value={5}>V</option>
                         </Form.Select>
                     </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control className="inp" type="password" placeholder="Password" value={pass} onChange={(e) => setPass(e.target.value)}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control className="inp" type="password" placeholder="Confirm Password" value={cpass} onChange={(e) => setCpass(e.target.value)}/>
-                    </Form.Group>
-                    {
-                    msg &&
-                    <p>{msg}</p>
-                    }
-                    <Button id="b" type="submit">
-                        Sign Up
+                    <Button id="b7" type="submit" onClick={updatestd}>
+                        Update
                     </Button>
-                    <p>
-                        Already have an account<br/>
-                    <Link to='/login_student'>
-                        <Button id="b1">Sign in</Button>
-                    </Link>
-                    </p>
+                        <Button id="b8" type="submit" onClick={() => {navigate('/profile_student',{state:state})}}>
+                            cancel
+                        </Button>
                 </Form>
-                
-                <p></p>
-                <br />
-                <br />
             </div>
         </>
     )
 }
-export default SignupStudent;
+export default UpdateProfileStudent;
